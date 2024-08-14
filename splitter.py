@@ -1,7 +1,7 @@
 import sys
 import logging
 from PIL import Image
-import fitz  # PyMuPDF
+import pymupdf
 from reportlab.pdfgen import canvas
 import tempfile
 import os
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 def split_pdf(input_pdf, output_pdf):
     try:
         # Open the input PDF
-        doc = fitz.open(input_pdf)
+        doc = pymupdf.open(input_pdf)
 
         # List to store paths of temporary image files
         temp_image_files = []
@@ -28,7 +28,7 @@ def split_pdf(input_pdf, output_pdf):
                 # Convert PDF page to image with higher resolution
                 page = doc.load_page(page_num)
                 zoom = 2  # Increase this for higher quality, but larger file size
-                mat = fitz.Matrix(zoom, zoom)
+                mat = pymupdf.Matrix(zoom, zoom)
                 pix = page.get_pixmap(matrix=mat)
                 img = Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
 
