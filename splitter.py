@@ -1,10 +1,11 @@
-import sys
 import logging
-from PIL import Image
-import pymupdf
-from reportlab.pdfgen import canvas
-import tempfile
 import os
+import sys
+import tempfile
+
+import pymupdf
+from PIL import Image
+from reportlab.pdfgen import canvas
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
